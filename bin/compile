@@ -25,7 +25,8 @@ status "Compiling nginx"
 ./configure \
   --prefix=/app/nginx \
   --with-http_ssl_module \
-  --with-http_stub_status_module
+  --with-http_stub_status_module \
+  --with-debug
 
 status "Installing nginx"
 make install --silent
