@@ -11,6 +11,8 @@ set -o pipefail   # don't ignore exit codes when piping output
 NGINX_VERSION=1.9.12
 
 nginx_tarball_url=http://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz
+set_misc_nginx_module_url=https://github.com/openresty/set-misc-nginx-module/archive/v0.31.tar.gz
+ngx_devel_kit_url=https://github.com/simpl/ngx_devel_kit/archive/v0.3.0.tar.gz
 
 build_dir=$1
 cache_dir=$2
@@ -19,6 +21,12 @@ env_dir=$3
 status "Downloading $nginx_tarball_url"
 curl -L $nginx_tarball_url | tar xzv
 
+status "Downloading $set_misc_nginx_module_url"
+curl -L $set_misc_nginx_module_url | tar xzv
+
+status "Downloading $ngx_devel_kit_url"
+curl -L $ngx_devel_kit_url | tar xzv
+
 cd nginx-${NGINX_VERSION}
 
 status "Compiling nginx"
@@ -26,6 +34,8 @@ status "Compiling nginx"
   --prefix=/app/nginx \
   --with-http_ssl_module \
   --with-http_stub_status_module \
+  --add-module=../ngx_devel_kit-0.3.0 \
+  --add-module=../set-misc-nginx-module-0.31 \
   --with-debug
 
 status "Installing nginx"
