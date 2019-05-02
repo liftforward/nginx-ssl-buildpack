@@ -8,10 +8,10 @@ status() {
 set -e            # fail fast
 set -o pipefail   # don't ignore exit codes when piping output
 
-NGINX_VERSION=1.9.12
+#NGINX_VERSION=1.9.12
 
 nginx_tarball_url=http://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz
-set_misc_nginx_module_url=https://github.com/openresty/set-misc-nginx-module/archive/v0.31.tar.gz
+set_misc_nginx_module_url=https://github.com/openresty/set-misc-nginx-module/archive/v0.32.tar.gz
 ngx_devel_kit_url=https://github.com/simpl/ngx_devel_kit/archive/v0.3.0.tar.gz
 
 build_dir=$1
